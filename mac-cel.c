@@ -18,5 +18,6 @@ int main(void) {
         puts("HID parameters set successfully.");
     } else
         fputs("Couldn't acquire handle.\n", stderr);
+        return 2;
     return 0;
 }
