@@ -7,7 +7,7 @@
 int main(void) {
     io_connect_t h;
     const int32_t a = INT32_MIN;
-    if (h = NXOpenEventStatus()) {
+    if ((h = NXOpenEventStatus())) {
         CFStringRef t = CFSTR(kIOHIDMouseAccelerationType);
         if (IOHIDSetParameter(h, t, &a, sizeof(a)) != KERN_SUCCESS) {
             fputs("Failed to set HID parameters.\n", stderr);
