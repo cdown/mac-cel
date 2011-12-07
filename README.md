@@ -5,7 +5,7 @@ This little program removes mouse acceleration on OS/X
 
 ## Installation
 
-* Download the [executable](https://github.com/downloads/Arie/mac-cel/mac-cel)
+* Download the [executable](https://github.com/downloads/Arie/mac-cel/mac-cel) or compile your own
 * Open System Preferences
 * Open Users & Groups
 * Click on your own username
