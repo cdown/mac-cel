@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     const int32_t a = INT32_MIN;
     CFStringRef t;
     if ((h = NXOpenEventStatus())) {
-        t = strncmp(argv[2], "-t", 3) ? CFSTR(kIOHIDTrackpadAccelerationType) : CFSTR(kIOHIDMouseAccelerationType);
+        t = strncmp(argv[2], "-t", 3) ? CFSTR(kIOHIDMouseAccelerationType) : CFSTR(kIOHIDTrackpadAccelerationType);
         if (IOHIDSetParameter(h, t, &a, sizeof(a)) != KERN_SUCCESS) {
             fputs("Failed to set HID parameters.\n", stderr);
             NXCloseEventStatus(h);
