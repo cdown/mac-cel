@@ -31,9 +31,8 @@ int main(int argc, char *argv[]) {
         }
         NXCloseEventStatus(h);
         puts("HID parameters set successfully.");
-    } else {
+    } else
         fputs("Couldn't acquire handle.\n", stderr);
         return 2;
-    }
     return 0;
 }
