@@ -4,12 +4,14 @@
 #include <IOKit/hidsystem/IOHIDParameter.h>
 #include <IOKit/hidsystem/event_status_driver.h>
 
-int main(void) {
+#define VERSION 1.01
+
+int main(int argc, char *argv[]) {
     io_connect_t h;
     const int32_t a = INT32_MIN;
     CFStringRef t;
     if ((h = NXOpenEventStatus())) {
-        t = CFSTR(kIOHIDMouseAccelerationType);
+        t = strncmp(argv[2], "-t", 3) ? CFSTR(kIOHIDTrackpadAccelerationType) : CFSTR(kIOHIDMouseAccelerationType);
         if (IOHIDSetParameter(h, t, &a, sizeof(a)) != KERN_SUCCESS) {
             fputs("Failed to set HID parameters.\n", stderr);
             NXCloseEventStatus(h);
