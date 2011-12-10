@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     const int32_t a = INT32_MIN;
     CFStringRef t;
     if (argc > 1 && (!(strncmp(argv[1], "-v", 3)))) {
-        printf("%s %.02f", "mac-cel", VERSION);
+        printf("%s %.02f\n", "mac-cel", VERSION);
         return 0;
     }
 
