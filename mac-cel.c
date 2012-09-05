@@ -9,21 +9,18 @@ int main(int argc, char *argv[]) {
     io_connect_t handle;
     const int32_t acceleration_amount = INT32_MIN;
     CFStringRef device_type;
+    
+    if (argc > 1 && (!(strncmp(argv[1], "-t", 3))))
+        device_type = CFSTR(kIOHIDTrackpadAccelerationType);
+    else
+        device_type = CFSTR(kIOHIDMouseAccelerationType);
 
     if ((handle = NXOpenEventStatus())) {
-        if (argc > 1 && (!(strncmp(argv[1], "-t", 3))))
-            device_type = CFSTR(kIOHIDTrackpadAccelerationType);
-        else
-            device_type = CFSTR(kIOHIDMouseAccelerationType);
-
-        if (IOHIDSetParameter(handle, device_type, &acceleration_amount,
-                              sizeof(acceleration_amount)) != KERN_SUCCESS)
-        {
-            fputs("Failed to set HID parameters.\n", stderr);
+        if (IOHIDSetParameter(handle, device_type, &acceleration_amount, sizeof(acceleration_amount)) != KERN_SUCCESS) {
             NXCloseEventStatus(handle);
+            fputs("Failed to set HID parameters.\n", stderr);
             return EXIT_FAILURE;
         }
-
         NXCloseEventStatus(handle);
     } else {
         fputs("Couldn't acquire handle.\n", stderr);
