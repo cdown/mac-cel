@@ -8,16 +8,10 @@
 #error This program is only designed to be run/built for Mac OSX.
 #endif
 
-#define VERSION 1.01
-
 int main(int argc, char *argv[]) {
     io_connect_t h;
     const int32_t a = INT32_MIN;
     CFStringRef t;
-    if (argc > 1 && (!(strncmp(argv[1], "-v", 3)))) {
-        printf("%s %.02f\n", "mac-cel", VERSION);
-        return 0;
-    }
 
     if ((h = NXOpenEventStatus())) {
         if (argc > 1 && (!(strncmp(argv[1], "-t", 3))))
