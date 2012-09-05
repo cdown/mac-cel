@@ -4,10 +4,6 @@
 #include <IOKit/hidsystem/IOHIDParameter.h>
 #include <IOKit/hidsystem/event_status_driver.h>
 
-#ifndef __APPLE__
-#error This program is only designed to be run/built for Mac OSX.
-#endif
-
 int main(int argc, char *argv[]) {
     io_connect_t h;
     const int32_t a = INT32_MIN;
