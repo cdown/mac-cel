@@ -5,21 +5,23 @@
 #include <IOKit/hidsystem/event_status_driver.h>
 
 int main(int argc, char *argv[]) {
-    io_connect_t h;
-    const int32_t a = INT32_MIN;
-    CFStringRef t;
+    io_connect_t handle;
+    const int32_t acceleration_amount = INT32_MIN;
+    CFStringRef device_type;
 
-    if ((h = NXOpenEventStatus())) {
+    if ((handle = NXOpenEventStatus())) {
         if (argc > 1 && (!(strncmp(argv[1], "-t", 3))))
-            t = CFSTR(kIOHIDTrackpadAccelerationType);
+            device_type = CFSTR(kIOHIDTrackpadAccelerationType);
         else
-            t = CFSTR(kIOHIDMouseAccelerationType);
-        if (IOHIDSetParameter(h, t, &a, sizeof(a)) != KERN_SUCCESS) {
+            device_type = CFSTR(kIOHIDMouseAccelerationType);
+        if (IOHIDSetParameter(handle, device_type, &acceleration_amount,
+                              sizeof(acceleration_amount)) != KERN_SUCCESS)
+        {
             fputs("Failed to set HID parameters.\n", stderr);
-            NXCloseEventStatus(h);
+            NXCloseEventStatus(handle);
             return 1;
         }
-        NXCloseEventStatus(h);
+        NXCloseEventStatus(handle);
         puts("HID parameters set successfully.");
     } else {
         fputs("Couldn't acquire handle.\n", stderr);
