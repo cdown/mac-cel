@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <IOKit/hidsystem/IOHIDLib.h>
 #include <IOKit/hidsystem/IOHIDParameter.h>
@@ -14,18 +15,19 @@ int main(int argc, char *argv[]) {
             device_type = CFSTR(kIOHIDTrackpadAccelerationType);
         else
             device_type = CFSTR(kIOHIDMouseAccelerationType);
+
         if (IOHIDSetParameter(handle, device_type, &acceleration_amount,
                               sizeof(acceleration_amount)) != KERN_SUCCESS)
         {
             fputs("Failed to set HID parameters.\n", stderr);
             NXCloseEventStatus(handle);
-            return 1;
+            return EXIT_FAILURE;
         }
+
         NXCloseEventStatus(handle);
-        puts("HID parameters set successfully.");
     } else {
         fputs("Couldn't acquire handle.\n", stderr);
-        return 2;
+        return EXIT_FAILURE;
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
