@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     );
     if (set_accel != KERN_SUCCESS) {
         perror("IOHIDSetParameter");
+        NXCloseEventStatus(handle);
         return EXIT_FAILURE;
     }
 
