@@ -1,2 +1,5 @@
 language: objective-c
-script: make
+install: make
+script:
+  - './mac-cel'
+  - './mac-cel -t'
